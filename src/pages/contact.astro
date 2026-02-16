@@ -1,0 +1,33 @@
+---
+import SiteLayout from "../components/layout/SiteLayout.astro";
+---
+<SiteLayout
+  title="Contact"
+  description="Send me a message."
+>
+  <div class="prose">
+    <h1>Contact</h1>
+    <p class="muted">This form is compatible with Netlify Forms.</p>
+
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact" />
+
+      <label>
+        Name
+        <input name="name" type="text" autocomplete="name" required />
+      </label>
+
+      <label>
+        Email
+        <input name="email" type="email" autocomplete="email" required />
+      </label>
+
+      <label>
+        Message
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</SiteLayout>

@@ -1,0 +1,25 @@
+---
+import TagList from "./TagList.astro";
+
+type Props = {
+  href: string;
+  title: string;
+  description?: string;
+  pubDate: Date;
+  tags?: string[];
+};
+
+const { href, title, description, pubDate, tags = [] } = Astro.props;
+
+const dateText = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "2-digit",
+});
+---
+<article class="card">
+  <h3><a href={href}>{title}</a></h3>
+  <div class="meta">{dateText}</div>
+  {description && <p>{description}</p>}
+  <TagList tags={tags} />
+</article>

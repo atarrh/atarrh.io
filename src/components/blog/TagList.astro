@@ -1,0 +1,21 @@
+---
+type Props = {
+  tags?: string[];
+};
+
+const { tags = [] } = Astro.props;
+
+const unique = Array.from(new Set(tags))
+  .map((t) => t.trim())
+  .filter(Boolean)
+  .sort((a, b) => a.localeCompare(b));
+---
+{unique.length > 0 && (
+  <div class="tags" aria-label="Tags">
+    {unique.map((tag) => (
+      <a class="tag" href={`/blog/tags/${encodeURIComponent(tag)}/`}>
+        #{tag}
+      </a>
+    ))}
+  </div>
+)}
