@@ -1,7 +1,7 @@
 ---
 import headshot from '../assets/headshot.jpg';
 // import Layout from '../layouts/BlogPost.astro';
-import SiteLayout from "../components/layout/SiteLayout.astro";
+import PortraitLayout from "../components/layout/PortraitLayout.astro";
 
 const pageTitle = "About Me";
 const pageDescription =
@@ -9,15 +9,13 @@ const pageDescription =
 
 ---
 
-<SiteLayout 
+<PortraitLayout 
 	title={pageTitle} 
 	description={pageDescription} 
 	pubDate={new Date('February 15 2026')}
-	heroImage={headshot}>
+	portraitImage={headshot}>
 
   <div class="prose">
-    <h1>About</h1>
-
     <p>
       I’m Andrew Tarrh — a software engineer with a backend / data-engineering bent.
       I’ve spent my career building and operating data pipelines and cloud-native
@@ -85,4 +83,4 @@ const pageDescription =
     </p>
   </div>
 
-</SiteLayout>
+</PortraitLayout>
