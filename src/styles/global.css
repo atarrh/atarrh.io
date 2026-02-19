@@ -16,6 +16,9 @@
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
 		rgba(var(--gray), 33%);
+    --page-bg-top: #f7f4ff;   /* light lavender */
+    --page-bg-mid: #fce9f1;   /* pink */
+    --page-bg-bot: #e9f3ff;   /* light blue */
 }
 @font-face {
 	font-family: "Atkinson";
@@ -49,6 +52,14 @@ main {
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
+}
+html, body {
+  background: linear-gradient(
+    180deg,
+    var(--page-bg-top) 0%,
+    var(--page-bg-mid) 45%,
+    var(--page-bg-bot) 100%
+  );
 }
 h1,
 h2,
@@ -135,6 +146,70 @@ hr {
 	main {
 		padding: 1em;
 	}
+}
+
+/* Hero layout */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 55vh;          /* tweak */
+  overflow: hidden;
+}
+
+/* Background layer: image + fade out */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+
+  /* background-image: */
+  background-image:
+    linear-gradient(
+      to bottom,
+	  rgba(246,238,247,0) 0%,
+      rgba(246,238,247,0.25) 65%,
+      rgba(246,238,247,0.75) 85%,
+      rgba(246,238,247,0.99) 100%
+	  /*
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0) 65%,
+      rgba(255,255,255,0.25) 80%,
+      rgba(255,255,255,0.6) 92%,
+      rgba(255,255,255,0.85) 100%
+	  */
+    ),
+    url("/img/hero-sunset.jpg");
+
+  background-size: cover;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+
+  /* Optional: slightly soften image for readability */
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* Content sits above bg */
+.hero__content {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 1.25rem 3rem;
+}
+
+/* Title readability */
+.hero__title {
+  margin: 0;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  letter-spacing: 0.02em;
+  color: #0b1020;
+
+  /* “glass” readability without being cheesy */
+  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.65);
+}
+
+.hero__subtitle {
+  margin-top: 0.75rem;
+  max-width: 40rem;
+  color: rgba(11, 16, 32, 0.85);
 }
 
 /* --- Brand mark: [ AT ] --- */
