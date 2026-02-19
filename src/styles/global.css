@@ -7,6 +7,7 @@
 :root {
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
+	--link-hover: #2f6fff;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -134,6 +135,91 @@ hr {
 	main {
 		padding: 1em;
 	}
+}
+
+/* --- Brand mark: [ AT ] --- */
+.brand-mark {
+  color: var(--brand-fg, currentColor);
+  font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Display", "SF Pro Text",
+               "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+}
+
+/* Slightly de-emphasize brackets for a cleaner look */
+.brand-mark > span:first-child,
+.brand-mark > span:last-child {
+  opacity: 0.65;
+}
+
+/* Make AT feel “logo-like” */
+.brand-initials {
+  letter-spacing: 0.12em;
+}
+
+.brand-bracket {
+  opacity: 0.55;
+  transform: translateY(0);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.u-animlink {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18em;
+  text-decoration: none;
+  color: var(--link-color, currentColor);
+  transition: color 180ms ease;
+}
+
+/* Animated underline */
+.u-animlink::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+
+  /* tweak this if your header font/line-height differs */
+  bottom: -0.25em;
+
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+
+  background: currentColor;
+
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  opacity: 0.55;
+
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+/* only animate non-active links */
+nav a.u-animlink:not(.active):hover,
+nav a.u-animlink:not(.active):focus-visible {
+  color: var(--link-hover);
+}
+nav a.u-animlink:not(.active):hover::after,
+nav a.u-animlink:not(.active):focus-visible::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 0.9;
+}
+
+/* Hover + keyboard focus */
+.brand-mark:hover .brand-bracket,
+.brand-mark:focus-visible .brand-bracket {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  color: var(--link-hover, #2f6fff);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .u-animlink,
+  .u-animlink::after {
+    transition: none;
+  }
 }
 
 .sr-only {
