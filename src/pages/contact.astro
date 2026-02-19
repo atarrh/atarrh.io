@@ -1,33 +1,40 @@
 ---
+import "../styles/contact.css";
 import SiteLayout from "../components/layout/SiteLayout.astro";
 ---
-<SiteLayout
-  title="Contact"
-  description="Send me a message."
->
+<SiteLayout title="Contact" description="Send me a message.">
   <div class="prose">
     <h1>Contact</h1>
     <p class="muted">This form is compatible with Netlify Forms.</p>
 
-    <form name="contact" method="POST" data-netlify="true">
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />
 
-      <label>
-        Name
-        <input name="name" type="text" autocomplete="name" required />
-      </label>
+      <!-- honeypot -->
+      <p class="sr-only">
+        <label>
+          Don't fill this out: <input name="bot-field" />
+        </label>
+      </p>
 
-      <label>
-        Email
-        <input name="email" type="email" autocomplete="email" required />
-      </label>
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
 
-      <label>
-        Message
-        <textarea name="message" rows="6" required></textarea>
-      </label>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
 
-      <button type="submit">Send</button>
+      <div class="field">
+        <label>Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" type="submit">Send</button>
+      </div>
     </form>
   </div>
 </SiteLayout>

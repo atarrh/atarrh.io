@@ -20,22 +20,21 @@ const dateText =
 ---
 <SiteLayout title={title} description={description}>
   <article class="prose">
+    {portraitImage && (
+      <figure class="about__photo">
+        <Image
+          src={portraitImage}
+          alt={portraitAlt ?? "Portrait"}
+          widths={[180, 240, 320, 360, 720]}
+          sizes="(min-width: 600px) 360px, 80vw"
+          loading="lazy"
+        />
+      </figure>
+    )}
     <h1>{title}</h1>
     {dateText && <p class="meta">Published: {dateText}</p>}
 
     <section class="about">
-      {portraitImage && (
-        <figure class="about__photo">
-          <Image
-            src={portraitImage}
-            alt={portraitAlt ?? "Portrait"}
-            widths={[180, 240, 320, 360, 720]}
-            sizes="(min-width: 600px) 360px, 80vw"
-            loading="lazy"
-          />
-        </figure>
-      )}
-
       <div class="about__text">
         <slot />
       </div>

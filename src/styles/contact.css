@@ -1,0 +1,114 @@
+.contact-form {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  backdrop-filter: blur(8px);
+}
+
+.contact-form .field {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  box-sizing: border-box;
+
+  padding: 0.75rem 0.85rem;
+  border-radius: 4px;
+
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  outline: none;
+
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  overflow: auto;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 72%,
+      rgba(15, 23, 42, 0.18) 72%,
+      rgba(15, 23, 42, 0.18) 78%,
+      transparent 78%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 82%,
+      rgba(15, 23, 42, 0.12) 82%,
+      rgba(15, 23, 42, 0.12) 88%,
+      transparent 88%
+    ),
+    rgba(255, 255, 255, 0.85);
+
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--brand-accent, #2f6fff);
+  box-shadow: 0 0 0 4px rgba(47, 111, 255, 0.20);
+  background: #fff;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(15, 23, 42, 0.45);
+}
+
+.contact-form .actions {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.contact-form .btn {
+  justify-self: center;
+  font: inherit;
+  font-weight: 600;
+
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+
+  color: var(--footer-text, rgba(15, 23, 42, 0.75));
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(15, 23, 42, 0.18);
+
+  cursor: pointer;
+  transition: color 140ms ease, border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+.contact-form .btn:hover,
+.contact-form .btn:focus-visible {
+  color: var(--link-hover, #2f6fff);
+  border-color: rgba(47, 111, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(47, 111, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.contact-form .btn:active {
+  transform: translateY(0);
+}
+
+.contact-form .hint {
+  margin: 0;
+  font-size: 0.95em;
+  color: rgba(15, 23, 42, 0.72);
+}
