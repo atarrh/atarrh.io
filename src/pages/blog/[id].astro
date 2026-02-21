@@ -2,7 +2,8 @@
 import SiteLayout from "../../components/layout/SiteLayout.astro";
 import TagList from "../../components/blog/TagList.astro";
 import { getCollection, getEntry, render } from "astro:content";
-// import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { Image } from "astro:assets";
+import { pickLandscape } from "@/utils/hashUtils";
 
 export async function getStaticPaths() {
 	// const posts = await getCollection('blog');
@@ -15,6 +16,17 @@ export async function getStaticPaths() {
   }));
 }
 
+// Auto-discover landscapes under src/assets/landscapes
+const landscapeModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/landscapes/*.{jpg,jpeg,png,webp,avif}",
+  { eager: true }
+);
+
+// Extract the default export (ImageMetadata objects)
+const landscapes: ImageMetadata[] = Object.values(landscapeModules).map(
+  (mod) => mod.default
+);
+
 // const post = Astro.props;
 // const { post } = Astro.props;
 
@@ -24,6 +36,7 @@ const id = Array.isArray(idParam) ? idParam.join("/") : idParam;
 // Fetch the entry in a way that supports rendering
 const post = await getEntry("blog", id);
 if (!post) throw new Error(`Post not found: ${id}`);
+const hero = pickLandscape(landscapes, post.id);
 
 const { Content } = await render(post);
 
@@ -42,6 +55,9 @@ const dateText = post.data.pubDate.toLocaleDateString("en-US", {
 ---
 <SiteLayout title={seoTitle} description={seoDescription}>
   <article class="prose">
+    <div class="hero-image">
+			{hero && <Image width={1020} height={510} src={hero} alt="" />}
+		</div>
     <h1>{post.data.title}</h1>
     <p class="meta">{dateText}</p>
     <TagList tags={post.data.tags} />
