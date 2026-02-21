@@ -20,13 +20,55 @@ const description = "Andrew's photography";
     <section class="masonry" aria-label="Photo gallery">
       {images.map(({ meta, title }) => (
         <figure class="tile">
-          <Image class="img" src={meta} alt={title} width={900} quality={80} />
+          <button
+            class="tile__btn"
+            type="button"
+            data-full={meta.src}
+            data-title={title}
+            aria-label={`Open photo: ${title}`}
+          >
+            <Image class="img" src={meta} alt={title} width={900} quality={80} />
+          </button>
           <figcaption class="cap">{title}</figcaption>
         </figure>
       ))}
     </section>
-  </main>
+    <dialog class="lightbox" id="lightbox">
+      <form method="dialog" class="lightbox__frame">
+        <button class="lightbox__close" aria-label="Close">✕</button>
+
+        <img class="lightbox__img" alt="" />
+        <div class="lightbox__title" aria-hidden="true"></div>
+      </form>
+    </dialog>
+  </section>
 </SiteLayout>
+
+<script>
+  const dialog = document.getElementById("lightbox");
+  const img = dialog?.querySelector(".lightbox__img");
+  const titleEl = dialog?.querySelector(".lightbox__title");
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest?.(".tile__btn");
+    if (!btn || !dialog || !img) return;
+
+    const src = btn.dataset.full;
+    const title = btn.dataset.title || "";
+
+    img.src = src;
+    img.alt = title;
+    if (titleEl) titleEl.textContent = title;
+
+    dialog.showModal();
+  });
+
+  // Click backdrop to close
+  dialog?.addEventListener("click", (e) => {
+    const frame = dialog.querySelector(".lightbox__frame");
+    if (frame && !frame.contains(e.target)) dialog.close();
+  });
+</script>
 
 <style>
   .gallery-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
@@ -62,4 +104,81 @@ const description = "Andrew's photography";
     transition: opacity .15s ease;
   }
   .tile:hover .cap { opacity: 1; }
+
+
+  .tile__btn {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    width: 100%;
+    display: block;
+  }
+
+  /* Dialog backdrop */
+  .lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+  }
+  
+  /* Modal frame */
+  .lightbox {
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+  
+  .lightbox__frame {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  
+    /* size */
+    max-width: 92vw;
+    max-height: 90vh;
+    background: transparent;
+  }
+  
+  .lightbox__img {
+    display: block;
+    width: auto;
+    height: auto;
+  
+    /* constrain to viewport */
+    object-fit: contain;
+    max-width: 92vw;
+    max-height: 90vh;
+    background: transparent;
+  }
+  
+  .lightbox__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(0,0,0,0.4);
+    color: rgba(255,255,255,0.92);
+    cursor: pointer;
+  }
+  
+  .lightbox__close:hover {
+    border-color: rgba(255,255,255,0.45);
+  }
+  
+  .lightbox__title {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.35);
+    color: rgba(255,255,255,0.9);
+    font-size: 12px;
+    letter-spacing: .04em;
+  }
 </style>
