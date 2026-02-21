@@ -1,8 +1,7 @@
 ---
 import { SITE_TITLE } from '../../consts';
-import HeaderLink from '../HeaderLink.astro';
+import HeaderLink from './HeaderLink.astro';
 ---
-
 <header>
 	<nav>
 		<a class="brand-mark u-animlink" href="/" aria-label="Home">
@@ -13,6 +12,7 @@ import HeaderLink from '../HeaderLink.astro';
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/photo">Photo</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">

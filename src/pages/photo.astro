@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import SiteLayout from '@/components/layout/SiteLayout.astro';
+
+const modules = import.meta.glob("../assets/landscapes/*.{jpg,jpeg,png,webp,avif}", { eager: true });
+// Each entry looks like { default: ImageMetadata }
+const images = Object.entries(modules).map(([path, mod]) => ({
+  // @ts-expect-error - glob typing varies by Astro version
+  meta: mod.default,
+  // use filename (without extension) as a classy title
+  title: path.split("/").pop()?.replace(/\.[^.]+$/, "")?.replace(/[-_]/g, " ") ?? "",
+}));
+
+const title = "Photo";
+const description = "Andrew's photography";
+---
+
+<SiteLayout title={title} description={description}>
+  <main class="wrap">
+    <section class="masonry" aria-label="Photo gallery">
+      {images.map(({ meta, title }) => (
+        <figure class="tile">
+          <Image class="img" src={meta} alt={title} width={900} quality={80} />
+          <figcaption class="cap">{title}</figcaption>
+        </figure>
+      ))}
+    </section>
+  </main>
+</SiteLayout>
+
+<style>
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+  .head h1 { margin: 0 0 1.25rem; font-size: 1.2rem; letter-spacing: .06em; text-transform: uppercase; }
+
+  /* Masonry via columns (simple + reliable) */
+  .masonry { column-count: 3; column-gap: 10px; }
+  @media (max-width: 900px) { .masonry { column-count: 2; } }
+  @media (max-width: 600px) { .masonry { column-count: 1; } }
+
+  .tile { break-inside: avoid; margin: 0 0 10px; position: relative; }
+  .img { width: 100%; height: auto; display: block; border-radius: 12px; }
+
+  /* Title overlay (top-right, subtle) */
+  .cap {
+    position: absolute; top: 10px; right: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: .04em;
+    backdrop-filter: blur(8px);
+    background: rgba(0,0,0,.35);
+    color: rgba(255,255,255,.92);
+    opacity: 0;
+    transition: opacity .15s ease;
+  }
+  .tile:hover .cap { opacity: 1; }
+</style>
