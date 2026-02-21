@@ -101,6 +101,10 @@ a:hover {
 p {
 	margin-bottom: 1em;
 }
+.prose {
+  width: 720px;
+  margin: auto;
+}
 .prose p {
 	margin-bottom: 2em;
 }
@@ -152,7 +156,8 @@ hr {
 
 /* default: for most pages (blog, photos, etc.) */
 .contained {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 960px;
   margin: 0 auto;
   padding: 2rem 0;
   box-sizing: border-box;
@@ -160,7 +165,7 @@ hr {
 
 /* full-bleed: for homepage hero that needs to hit the edges */
 .fullbleed {
-  width: 720px;
+  width: 100%;
   max-width: calc(100% - 2em);
   margin: auto;
 }
@@ -326,36 +331,6 @@ nav a.u-animlink:not(.active):focus-visible::after {
   .u-animlink::after {
     transition: none;
   }
-}
-
-/* space between image and text */
-.about__photo {
-  margin: 0 0 1rem 1.5rem;   
-}
-
-@media (min-width: 600px) {
-  .about__photo {
-    float: right;
-    width: 360px;
-  }
-}
-
-/* Mobile: no float, constrained with max-width */
-@media (max-width: 599px) {
-  .about__photo {
-    float: none;
-    width: 100%;
-    max-width: 360px;
-    margin: 1rem auto;
-  }
-}
-
-.about__photo :global(img),
-.about__photo :global(picture) {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 16px;
 }
 
 .sr-only {

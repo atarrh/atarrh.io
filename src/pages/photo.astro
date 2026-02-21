@@ -29,7 +29,7 @@ const description = "Andrew's photography";
 </SiteLayout>
 
 <style>
-  .gallery-wrap { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+  .gallery-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
   .head h1 { margin: 0 0 1.25rem; font-size: 1.2rem; letter-spacing: .06em; text-transform: uppercase; }
 
   /* Masonry via columns (simple + reliable) */
@@ -41,11 +41,12 @@ const description = "Andrew's photography";
   .tile .img,
   .tile img {
     width: 100%;
+    max-width: 100%;
     aspect-ratio: 3 / 2;
     height: auto;
     object-fit: cover;
     display: block;
-    border-radius: 12px;
+    border-radius: 8px;
   }
 
   /* Title overlay (top-right, subtle) */

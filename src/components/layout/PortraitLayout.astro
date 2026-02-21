@@ -37,3 +37,36 @@ const { title, description, portraitImage, portraitAlt = "" } = Astro.props;
     </section>
   </article>
 </SiteLayout>
+
+
+<style>
+  /* space between image and text */
+  .about__photo {
+    margin: 0 0 1rem 1.5rem;   
+  }
+  
+  @media (min-width: 600px) {
+    .about__photo {
+      float: right;
+      width: 360px;
+    }
+  }
+  
+  /* Mobile: no float, constrained with max-width */
+  @media (max-width: 599px) {
+    .about__photo {
+      float: none;
+      width: 100%;
+      max-width: 360px;
+      margin: 1rem auto;
+    }
+  }
+  
+  .about__photo :global(img),
+  .about__photo :global(picture) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+</style>
