@@ -102,8 +102,11 @@ p {
 	margin-bottom: 1em;
 }
 .prose {
-  width: 720px;
+  max-width: 720px;
+  width: 100%;
   margin: auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 .prose p {
 	margin-bottom: 2em;

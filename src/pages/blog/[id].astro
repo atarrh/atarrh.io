@@ -6,13 +6,9 @@ import { Image } from "astro:assets";
 import { pickLandscape } from "@/utils/hashUtils";
 
 export async function getStaticPaths() {
-	// const posts = await getCollection('blog');
   const posts = await getCollection("blog", ({ data }) => !data.draft);
   return posts.map((post) => ({
 	params: { id: post.id },
-	// params: { slug: post.id },
-	// props: post,
-    // props: { post },
   }));
 }
 
@@ -26,9 +22,6 @@ const landscapeModules = import.meta.glob<{ default: ImageMetadata }>(
 const landscapes: ImageMetadata[] = Object.values(landscapeModules).map(
   (mod) => mod.default
 );
-
-// const post = Astro.props;
-// const { post } = Astro.props;
 
 const idParam = Astro.params.id;
 const id = Array.isArray(idParam) ? idParam.join("/") : idParam;
@@ -65,7 +58,3 @@ const dateText = post.data.pubDate.toLocaleDateString("en-US", {
     <Content />
   </article>
 </SiteLayout>
-
-<!-- <BlogPost {...post.data}>
-	<Content />
-</BlogPost> -->
