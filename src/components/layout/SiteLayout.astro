@@ -1,31 +1,26 @@
 ---
 import "../../styles/global.css";
+import BaseHead from "./BaseHead.astro"
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 
 type Props = {
-  mainClass?: string;
   title?: string;
   description?: string;
+  mainClass?: string;
+  image?: ImageMetadata | string;
 };
 
 const {
-  mainClass = "contained",
   title = "atarrh.io",
-  description = "a place to clarify ideas, share technical explorations, and think out loud about infrastructure and systems."
-} = Astro.props;
-
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+  description = "a place to clarify ideas, share technical explorations, and think out loud about infrastructure and systems.",
+  mainClass = "contained",
+  image } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
+    <BaseHead title={title} description={description} image={image}/>
   </head>
   <body>
     <Header />

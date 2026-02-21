@@ -1,5 +1,4 @@
 ---
-import { SITE_TITLE } from '../../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 <header>
@@ -139,8 +138,8 @@ import HeaderLink from './HeaderLink.astro';
       .brand-menu > summary.brand-mark {
         display: inline-flex;
         align-items: center;
-        padding: 1em 0.5em;     /* matches nav a */
-        border-bottom: 4px solid transparent; /* matches nav a */
+        padding: 1em 0.5em;
+        border-bottom: 4px solid transparent;
       }
 
       /* optional: remove any default focus outline weirdness, keep accessible focus */
@@ -161,7 +160,7 @@ import HeaderLink from './HeaderLink.astro';
 	  /* dropdown panel */
 	  .internal-links--dropdown {
 	    position: absolute;
-	    left: 1rem;          /* aligns near logo */
+	    left: 1rem;
 	    top: calc(100% + 0.5rem);
 	    display: flex;
 	    flex-direction: column;
