@@ -24,7 +24,7 @@ const landscapes: ImageMetadata[] = Object.values(landscapeModules).map(
 );
 ---
 <SiteLayout title={title} description={description}>
-	<section style="margin: 2em 0;">
+	<section>
 		<ul>
 			{posts.map((post) => {
 				let hero = pickLandscape(landscapes, post.id);

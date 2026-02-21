@@ -16,7 +16,7 @@ const description = "Andrew's photography";
 ---
 
 <SiteLayout title={title} description={description}>
-  <main class="wrap">
+  <section class="gallery-wrap">
     <section class="masonry" aria-label="Photo gallery">
       {images.map(({ meta, title }) => (
         <figure class="tile">
@@ -29,7 +29,7 @@ const description = "Andrew's photography";
 </SiteLayout>
 
 <style>
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+  .gallery-wrap { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
   .head h1 { margin: 0 0 1.25rem; font-size: 1.2rem; letter-spacing: .06em; text-transform: uppercase; }
 
   /* Masonry via columns (simple + reliable) */
@@ -38,7 +38,15 @@ const description = "Andrew's photography";
   @media (max-width: 600px) { .masonry { column-count: 1; } }
 
   .tile { break-inside: avoid; margin: 0 0 10px; position: relative; }
-  .img { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .tile .img,
+  .tile img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+  }
 
   /* Title overlay (top-right, subtle) */
   .cap {

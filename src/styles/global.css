@@ -101,9 +101,6 @@ a:hover {
 p {
 	margin-bottom: 1em;
 }
-.prose {
-	margin: 2em 0;
-}
 .prose p {
 	margin-bottom: 2em;
 }
@@ -151,6 +148,21 @@ hr {
 	main {
 		padding: 0 1em;
 	}
+}
+
+/* default: for most pages (blog, photos, etc.) */
+.contained {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+
+/* full-bleed: for homepage hero that needs to hit the edges */
+.fullbleed {
+  width: 720px;
+  max-width: calc(100% - 2em);
+  margin: auto;
 }
 
 /* Hero layout */

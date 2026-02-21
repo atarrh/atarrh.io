@@ -4,13 +4,15 @@ import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 
 type Props = {
+  mainClass?: string;
   title?: string;
   description?: string;
 };
 
 const {
+  mainClass = "contained",
   title = "atarrh.io",
-  description = "a place to clarify ideas, share technical explorations, and think out loud about infrastructure and systems.",
+  description = "a place to clarify ideas, share technical explorations, and think out loud about infrastructure and systems."
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
@@ -27,7 +29,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
   </head>
   <body>
     <Header />
-    <main>
+    <main class={mainClass}>
       <slot />
     </main>
     <Footer />
