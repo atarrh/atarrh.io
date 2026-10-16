@@ -1,0 +1,21 @@
+name: Scheduled deploy
+
+# Rebuild daily so posts with a future pubDate go live on their date.
+on:
+  schedule:
+    - cron: "0 14 * * *" # 14:00 UTC = 7:00 Arizona time
+  workflow_dispatch:
+
+jobs:
+  trigger-netlify-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Netlify build hook
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then
+            echo "NETLIFY_BUILD_HOOK secret is not set" >&2
+            exit 1
+          fi
+          curl --fail -sS -X POST -d '{}' "$NETLIFY_BUILD_HOOK"
