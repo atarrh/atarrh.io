@@ -1,4 +1,6 @@
 ---
+import { SUBSTACK_URL } from '../../consts';
+
 type Props = {
 	class?: string;
 };
@@ -24,7 +26,7 @@ const { class: className } = Astro.props;
 			></path>
 		</svg>
 	</a>
-	<a class="u-animlink" href="https://substack.com/@andrewtarrh" target="_blank" rel="noreferrer">
+	<a class="u-animlink" href={SUBSTACK_URL} target="_blank" rel="noreferrer">
 		<span class="sr-only">Follow me on Substack</span>
 		<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" fill="none">
 			<path d="M3.75 4.25h8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
