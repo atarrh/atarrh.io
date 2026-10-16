@@ -7,10 +7,11 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata | string;
+	type?: 'website' | 'article';
 }
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
-const { title, description, image } = Astro.props;
+const { title, description, image, type = 'website' } = Astro.props;
 
 // Use provided image, otherwise fallback to headshot
 const resolvedImage = image ?? headshot;
@@ -54,7 +55,7 @@ const ogImageUrl = new URL(
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
