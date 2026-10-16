@@ -1,10 +1,16 @@
 ---
 import headshot from '../assets/headshot.jpg';
 import PortraitLayout from "../components/layout/PortraitLayout.astro";
+import { getEntry } from "astro:content";
+import { isPublished } from "@/utils/posts";
 
 const pageTitle = "About Me";
 const pageDescription =
   "Andrew Tarrh — software engineer focused on data pipelines, infrastructure, and privacy-minded systems for mission-driven work.";
+
+// Link the civic post only once it is live, so About can ship before it.
+const civicPost = await getEntry("blog", "showing-up-online-and-in-person");
+const showCivicPost = civicPost !== undefined && isPublished(civicPost);
 
 ---
 <PortraitLayout 
@@ -25,13 +31,28 @@ const pageDescription =
       where I helped maintain large-scale ETL workflows and the operational tooling
       behind them. That environment shaped how I work: I care about clear ownership,
       pragmatic instrumentation, and making systems easier (and safer) to operate.
+      It also made me AI-forward early on. Today I use AI tools throughout my own
+      development workflow, and they’ve changed how quickly I can pick up a new stack.
     </p>
 
     <p>
-      In recent years I stepped back from full-time roles while I focused on building
-      my personal home and expanding my hands-on skill set. That time has also helped
-      me get clearer about what I want next: work that feels aligned with real-world
-      impact — especially in areas like climate/energy and health.
+      After Amazon I stepped back from full-time roles and took on independent contract
+      work, including evaluating LLM code generation and mentoring engineers on data
+      infrastructure. I also put a lot of time into building out a van, which is still
+      a work in progress (and a future blog topic). Along the way I spent about six
+      months volunteering with <strong>WeVote</strong>, a nonpartisan civic-tech
+      nonprofit, contributing UI components and bug fixes to its Node/React/Flux web app
+      and improvements to its Python/Django API server.
+    </p>
+
+    <p>
+      Since April 2026 I’ve worked on the Platform team at
+      <strong>Arizona State University’s Learning Enterprise</strong>, contracting through
+      Dexian. We build and modernize the backend systems and data integrations behind
+      ASU’s enterprise applications and digital learning platforms, like Salesforce and
+      Canvas. Lately I’ve focused on data consistency: making sure records agree as they
+      move between systems. The work is fully remote, with a few in-person meetups a year,
+      which suits me well.
     </p>
 
     <p>
@@ -42,40 +63,48 @@ const pageDescription =
     <h2>What I’m doing now</h2>
     <ul>
       <li>
-        Volunteering with <strong>WeVote</strong>, contributing UI components and bug
-        fixes in a Node/React/Flux web app and making improvements to a Python/Django
-        API endpoints server.
+        Working on data integrations and cross-system consistency for ASU Learning
+        Enterprise’s Platform team.
       </li>
       <li>
-        Rebuilding my professional presence (including this site) to better showcase
-        the systems work I’ve done and the kinds of problems I want to solve next.
+        Volunteering with <strong>Voter Choice Arizona</strong>, a nonpartisan group that
+        educates voters about ranked choice voting. In Tucson I collect signatures, talk
+        with people at community events, and do some public speaking.
+        {showCivicPost && (
+          <>
+            I wrote about it, and about my time with WeVote, in
+            <a href="/blog/showing-up-online-and-in-person/">Showing Up, Online and in Person</a>.
+          </>
+        )}
       </li>
       <li>
-        Continuing to explore mission-driven domains — informed by projects like my
-        master’s capstone forecasting energy usage for university buildings.
+        Writing here more often — about infrastructure, civic tech, and whatever else I’m
+        learning.
+      </li>
+      <li>
+        Chipping away at the van build.
       </li>
     </ul>
 
-    <h2>What I’m looking for</h2>
+    <h2>What I care about working on</h2>
     <p>
-      I’m aiming for a role (or contract work) where I can help a small-to-mid-sized
-      team build dependable data and ML infrastructure: pipelines, orchestration,
-      observability, and the patterns that keep systems secure and maintainable.
-      I’m especially interested in organizations that take privacy seriously and
-      are working on climate/energy, healthcare, or other public-benefit outcomes.
+      I’m happiest helping a small-to-mid-sized team build dependable data
+      infrastructure: pipelines, integrations, observability, and the patterns that keep
+      systems secure and maintainable. I’m drawn to organizations that take privacy
+      seriously and work on public-benefit problems like education, health, and climate.
+      Green energy is a long-standing interest — my master’s capstone forecast energy
+      use for university buildings.
     </p>
 
     <p>
-      I’m currently based in <strong>Tucson, Arizona</strong>, and I’m open to remote
-      work (including part-time) as well as relocating for the right mission-aligned
-      opportunity.
+      I’m based in <strong>Tucson, Arizona</strong>, and I work remotely.
     </p>
 
     <h2>A note on values</h2>
     <p>
-      I care a lot about community, sustainability, and housing justice. I’m
-      interested in models like community land trusts and co-housing, and I try to
-      make career choices that balance practical needs with long-term alignment.
+      I care a lot about community, civic engagement, sustainability, and housing
+      justice. I’m interested in models like community land trusts and co-housing, and
+      I try to make career choices that balance practical needs with long-term alignment.
     </p>
 
     <hr />

@@ -2,9 +2,10 @@
 import { getCollection } from "astro:content";
 import SiteLayout from "@/components/layout/SiteLayout.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
+import { isPublished } from "@/utils/posts";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const posts = await getCollection("blog", isPublished);
   const tags = new Set(posts.flatMap((post) => post.data.tags.map((t) => t.trim())).filter(Boolean));
 
   return [...tags].map((tag) => ({

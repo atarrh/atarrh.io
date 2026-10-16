@@ -1,8 +1,9 @@
 ---
 import SiteLayout from "../components/layout/SiteLayout.astro";
 import { getCollection } from "astro:content";
+import { isPublished } from "@/utils/posts";
 
-const allPosts = await getCollection("blog", ({ data }) => data.draft !== true);
+const allPosts = await getCollection("blog", isPublished);
 const posts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
