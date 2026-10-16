@@ -1,15 +1,17 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import SiteLayout from '@/components/layout/SiteLayout.astro';
+import { landscapeEntries } from "@/utils/landscapes";
 
-const modules = import.meta.glob("../assets/landscapes/*.{jpg,jpeg,png,webp,avif}", { eager: true });
-// Each entry looks like { default: ImageMetadata }
-const images = Object.entries(modules).map(([path, mod]) => ({
-  // @ts-expect-error - glob typing varies by Astro version
-  meta: mod.default,
-  // use filename (without extension) as a classy title
-  title: path.split("/").pop()?.replace(/\.[^.]+$/, "")?.replace(/[-_]/g, " ") ?? "",
-}));
+const images = await Promise.all(
+  landscapeEntries.map(async ({ path, image: meta }) => ({
+    meta,
+    // Lightbox gets a resized copy; the originals are several MB each.
+    full: await getImage({ src: meta, width: Math.min(meta.width, 2000), quality: 85 }),
+    // use filename (without extension) as a classy title
+    title: path.split("/").pop()?.replace(/\.[^.]+$/, "")?.replace(/[-_]/g, " ") ?? "",
+  }))
+);
 
 const title = "Photo";
 const description = "Andrew's photography";
@@ -18,12 +20,12 @@ const description = "Andrew's photography";
 <SiteLayout title={title} description={description}>
   <section class="gallery-wrap">
     <section class="masonry" aria-label="Photo gallery">
-      {images.map(({ meta, title }) => (
+      {images.map(({ meta, full, title }) => (
         <figure class="tile">
           <button
             class="tile__btn"
             type="button"
-            data-full={meta.src}
+            data-full={full.src}
             data-title={title}
             aria-label={`Open photo: ${title}`}
           >
@@ -72,7 +74,6 @@ const description = "Andrew's photography";
 
 <style>
   .gallery-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-  .head h1 { margin: 0 0 1.25rem; font-size: 1.2rem; letter-spacing: .06em; text-transform: uppercase; }
 
   /* Masonry via columns (simple + reliable) */
   .masonry { column-count: 3; column-gap: 10px; }

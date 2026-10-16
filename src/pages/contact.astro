@@ -5,7 +5,6 @@ import SiteLayout from "../components/layout/SiteLayout.astro";
 <SiteLayout title="Contact" description="Send me a message.">
   <div class="prose">
     <h1>Contact</h1>
-    <p class="muted">This form is compatible with Netlify Forms.</p>
 
     <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />
@@ -28,7 +27,7 @@ import SiteLayout from "../components/layout/SiteLayout.astro";
       </div>
 
       <div class="field">
-        <label>Message</label>
+        <label for="message">Message</label>
         <textarea id="message" name="message" rows="6" required></textarea>
       </div>
 

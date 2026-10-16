@@ -2,25 +2,15 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { pickLandscape } from "@/utils/hashUtils";
+import { landscapes } from "@/utils/landscapes";
 import SiteLayout from '@/components/layout/SiteLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 const title = "Blog";
 const description = "Andrew's blog";
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
-
-// Auto-discover landscapes under src/assets/landscapes
-const landscapeModules = import.meta.glob<{ default: ImageMetadata }>(
-  "../../assets/landscapes/*.{jpg,jpeg,png,webp,avif}",
-  { eager: true }
-);
-
-// Extract the default export (ImageMetadata objects)
-const landscapes: ImageMetadata[] = Object.values(landscapeModules).map(
-  (mod) => mod.default
 );
 ---
 <SiteLayout title={title} description={description}>
