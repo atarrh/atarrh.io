@@ -9,9 +9,9 @@ Personal site for atarrh.io: blog, photo gallery, about/resume, contact. Static 
 - `npm run dev` — dev server (also the VS Code launch config)
 - `npm run build` — static build to `dist/`; this is the main correctness check
 - `npm run preview` — serve the built `dist/`
-- `npx astro check` — type-check; needs `@astrojs/check` and `typescript`, which are not installed yet
+- `npm run check` — `astro check` type-check, including client `<script>` blocks
 
-There are no tests and no linter.
+There are no tests and no linter. CI (`.github/workflows/ci.yml`) runs `npm ci`, `npm run check`, and `npm run build` on every PR and on pushes to `main`. `.nvmrc` sets the Node version for CI and Netlify.
 
 ## Architecture
 
