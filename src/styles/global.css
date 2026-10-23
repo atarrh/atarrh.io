@@ -5,9 +5,10 @@
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--link-hover: #2f6fff;
+	/* sky blue; keeps at least 4.6:1 contrast on every page-gradient color */
+	--accent: #026fb3;
+	--accent-dark: #01568b;
+	--link-hover: #0a86d6;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -96,7 +97,7 @@ a {
 	color: var(--accent);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-dark);
 }
 p {
 	margin-bottom: 1em;
@@ -321,7 +322,7 @@ nav a.u-animlink:not(.active):focus-visible::after {
 .brand-mark:focus-visible .brand-bracket {
   opacity: 0.9;
   transform: translateY(-1px);
-  color: var(--link-hover, #2f6fff);
+  color: var(--link-hover);
 }
 
 /* Respect reduced motion */
