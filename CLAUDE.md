@@ -23,4 +23,5 @@ There are no tests and no linter. CI (`.github/workflows/ci.yml`) runs `npm ci`,
 - **Images:** put photos in `src/assets/` so Astro optimizes them (`<Image>` / `getImage()`). Files in `public/` are served as-is. The photo lightbox uses `getImage()` copies capped at 2000px wide.
 - **Styles:** global tokens and shared classes (`.prose`, `.contained`, `.u-animlink`, `.sr-only`) are in `src/styles/global.css`. Component styles are scoped with `data-astro-cid` attributes, so a parent's scoped selector does not reach elements inside a child component. Anchor it on the parent's own element with `:global(...)`, as `Header`/`Footer` do for `SocialLinks`.
 - **Path alias:** `@/*` → `src/*` (from `tsconfig.json`).
+- **Nav and projects:** nav links are one `links` array in `Header.astro`, used by both the desktop row and the mobile dropdown (below 640px). The Projects page renders `src/data/projects.ts` with `ProjectCard`; edit the data file to change entries. Private repos get no links.
 - **Contact form:** `src/pages/contact.astro` uses Netlify Forms attributes (`data-netlify`, honeypot field). There is no backend code.

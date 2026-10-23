@@ -1,0 +1,23 @@
+---
+import SiteLayout from "@/components/layout/SiteLayout.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import { openSource, projects } from "@/data/projects";
+---
+<SiteLayout
+  title="Projects"
+  description="Side projects, prototypes and open-source work by Andrew Tarrh."
+>
+  <section class="prose">
+    <h1>Projects</h1>
+    <p>
+      Things I build outside my day job. Some are learning projects, some are
+      small experiments, and some are tools I use every day.
+    </p>
+
+    <h2>Side projects</h2>
+    {projects.map((project) => <ProjectCard project={project} />)}
+
+    <h2>Open source</h2>
+    {openSource.map((project) => <ProjectCard project={project} />)}
+  </section>
+</SiteLayout>
