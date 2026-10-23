@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../../components/layout/SiteLayout.astro";
 import TagList from "../../components/blog/TagList.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
 import { getCollection, getEntry, render } from "astro:content";
 import { Image } from "astro:assets";
 import { pickLandscape } from "@/utils/hashUtils";
@@ -30,12 +31,6 @@ const seoTitle = post.data.title ?? "Blog Post";
 const seoDescription =
   post.data.description ??
   "Read this blog post on my Astro site.";
-
-const dateText = post.data.pubDate.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "short",
-  day: "2-digit",
-});
 ---
 <SiteLayout title={seoTitle} description={seoDescription} image={hero} type="article">
   <article class="prose">
@@ -43,7 +38,7 @@ const dateText = post.data.pubDate.toLocaleDateString("en-US", {
 			{hero && <Image width={1020} height={510} src={hero} alt="" />}
 		</div>
     <h1>{post.data.title}</h1>
-    <p class="meta">{dateText}</p>
+    <p class="meta"><FormattedDate date={post.data.pubDate} /></p>
     <TagList tags={post.data.tags} />
     <hr />
     <Content />

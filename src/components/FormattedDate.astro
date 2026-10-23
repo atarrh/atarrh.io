@@ -8,7 +8,9 @@ const { date } = Astro.props;
 
 <time datetime={date.toISOString()}>
 	{
+		// pubDate strings parse as UTC midnight; format in UTC so local builds don't show the day before.
 		date.toLocaleDateString('en-us', {
+			timeZone: 'UTC',
 			year: 'numeric',
 			month: 'short',
 			day: 'numeric',
