@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Personal site for atarrh.io: blog, photo gallery, about/resume, contact. Static Astro 5 site with MDX, RSS, and sitemap integrations. `README.md` is still the Astro starter text and does not describe this project.
+Personal site for atarrh.io: blog, photo gallery, about/resume, contact. Static Astro 7 site with MDX, RSS, and sitemap integrations. `compressHTML: true` in `astro.config.mjs` is deliberate: the Astro 7 default (`'jsx'`) drops whitespace at line breaks next to tags, which merges words (it rendered "speaking.I" on the About page). `README.md` is still the Astro starter text and does not describe this project.
 
 ## Commands
 
