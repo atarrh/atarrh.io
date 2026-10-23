@@ -47,15 +47,16 @@ const description = "Andrew's photography";
 </SiteLayout>
 
 <script>
-  const dialog = document.getElementById("lightbox");
-  const img = dialog?.querySelector(".lightbox__img");
+  const dialog = document.querySelector<HTMLDialogElement>("#lightbox");
+  const img = dialog?.querySelector<HTMLImageElement>(".lightbox__img");
   const titleEl = dialog?.querySelector(".lightbox__title");
 
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest?.(".tile__btn");
+    if (!(e.target instanceof Element)) return;
+    const btn = e.target.closest<HTMLElement>(".tile__btn");
     if (!btn || !dialog || !img) return;
 
-    const src = btn.dataset.full;
+    const src = btn.dataset.full ?? "";
     const title = btn.dataset.title || "";
 
     img.src = src;
@@ -68,7 +69,7 @@ const description = "Andrew's photography";
   // Click backdrop to close
   dialog?.addEventListener("click", (e) => {
     const frame = dialog.querySelector(".lightbox__frame");
-    if (frame && !frame.contains(e.target)) dialog.close();
+    if (frame && !frame.contains(e.target as Node | null)) dialog.close();
   });
 </script>
 
