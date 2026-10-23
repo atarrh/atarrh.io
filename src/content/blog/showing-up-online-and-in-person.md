@@ -1,9 +1,8 @@
 ---
 title: 'Showing Up, Online and in Person'
 description: 'Two very different ways I got involved in civic work this year, one remote and one on the ground in Arizona, and a few things you can do before Election Day.'
-pubDate: '2026-10-19'
+pubDate: '2026-10-23'
 tags: ['civic-tech', 'voting', 'arizona', 'volunteering']
-draft: true
 ---
 
 Election Day is coming up, and I've been thinking about what it actually means to "get involved." This past year I tried it two very different ways: once from my desk, writing code for a civic-tech nonprofit, and once in person, holding a clipboard at a rally. Both taught me something, and they taught me different things.
@@ -50,7 +49,7 @@ If you've been meaning to get involved, pick whichever one fits your life right 
 If you're in Arizona, here's where things stand for the November 3 general election:
 
 - **The registration deadline (October 5) has passed**, and Arizona doesn't have same-day registration. If you missed it this time, register now for the next election.
-- **Request a mail ballot by October 23**, if you want one.
+- **Mail ballots:** the deadline to request one was October 23. If you have one, mail it back by October 27, or drop it off at a drop box or voting location by 7 p.m. on Election Day.
 - **In-person early voting runs through October 30.**
 - **Find your polling place and track your ballot** at [my.arizona.vote](https://my.arizona.vote/WhereToVote.aspx). Election Day polling places can differ from early voting sites, so check before you go.
 
