@@ -2,6 +2,7 @@
 import SiteLayout from "../components/layout/SiteLayout.astro";
 import { getCollection } from "astro:content";
 import { isPublished } from "@/utils/posts";
+import FormattedDate from "../components/FormattedDate.astro";
 
 const allPosts = await getCollection("blog", isPublished);
 const posts = allPosts
@@ -67,6 +68,22 @@ const pageDescription =
       It’s intentionally minimal and evolving.
     </p>
 
+    {posts.length > 0 && (
+      <>
+        <h2>Recent writing</h2>
+        <ul class="recent">
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+              <span class="recent__date"><FormattedDate date={post.data.pubDate} /></span>
+              <p class="recent__desc">{post.data.description}</p>
+            </li>
+          ))}
+        </ul>
+        <p><a href="/blog/">All posts →</a></p>
+      </>
+    )}
+
     <hr />
 
     <p class="muted">
@@ -75,3 +92,24 @@ const pageDescription =
     </p>
   </section>
 </SiteLayout>
+
+<style>
+  .recent {
+    list-style: none;
+    padding: 0;
+  }
+  .recent li {
+    margin-bottom: 1.25rem;
+  }
+  .recent a {
+    font-weight: 700;
+  }
+  .recent__date {
+    margin-left: 0.5rem;
+    color: rgb(var(--gray));
+    font-size: 0.9em;
+  }
+  .recent__desc {
+    margin: 0.25rem 0 0;
+  }
+</style>
