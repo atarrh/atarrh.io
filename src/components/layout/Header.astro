@@ -1,6 +1,15 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import SocialLinks from './SocialLinks.astro';
+
+const links = [
+	{ href: '/', label: 'Home' },
+	{ href: '/blog', label: 'Blog' },
+	{ href: '/projects', label: 'Projects' },
+	{ href: '/photo', label: 'Photo' },
+	{ href: '/about', label: 'About' },
+	{ href: '/contact', label: 'Contact' },
+];
 ---
 <header>
 	<nav class="topnav">
@@ -19,21 +28,13 @@ import SocialLinks from './SocialLinks.astro';
         	<span class="brand-bracket" aria-hidden="true">]</span>
       	  </summary>
 		  <div class="internal-links internal-links--dropdown">
-        	<HeaderLink href="/">Home</HeaderLink>
-      		<HeaderLink href="/blog">Blog</HeaderLink>
-        	<HeaderLink href="/photo">Photo</HeaderLink>
-        	<HeaderLink href="/about">About</HeaderLink>
-        	<HeaderLink href="/contact">Contact</HeaderLink>
-      	  </div>
+			{links.map((l) => <HeaderLink href={l.href}>{l.label}</HeaderLink>)}
+		  </div>
     	</details>
 
 		<!-- Desktop links -->
 		<div class="internal-links internal-links--desktop">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/photo">Photo</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-			<HeaderLink href="/contact">Contact</HeaderLink>
+			{links.map((l) => <HeaderLink href={l.href}>{l.label}</HeaderLink>)}
 		</div>
 		<SocialLinks />
 	</nav>
@@ -72,8 +73,8 @@ import SocialLinks from './SocialLinks.astro';
 	.brand--mobile { display: none; }
 	.internal-links--desktop { display: flex; }
 
-	/* Narrow screens: hide desktop links, show brand dropdown */
-	@media (max-width: 400px) {
+	/* Narrow screens: hide desktop links, show brand dropdown. Six links need about 640px. */
+	@media (max-width: 640px) {
 	  .brand--desktop { display: none; }
 	  .internal-links--desktop { display: none; }
 

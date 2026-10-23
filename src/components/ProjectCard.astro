@@ -1,0 +1,75 @@
+---
+import type { Project } from "@/data/projects";
+
+type Props = { project: Project };
+
+const { project } = Astro.props;
+---
+<article class="project">
+  <header class="project__head">
+    <h3>{project.name}</h3>
+    <span class="project__status">{project.status}</span>
+  </header>
+  <p>{project.summary}</p>
+  <ul class="project__stack" aria-label="Built with">
+    {project.stack.map((s) => <li>{s}</li>)}
+  </ul>
+  {project.links && (
+    <p class="project__links">
+      {project.links.map((l) => (
+        <a href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>
+      ))}
+    </p>
+  )}
+</article>
+
+<style>
+  .project {
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+  }
+  .project__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
+  }
+  .project__head h3 {
+    margin: 0;
+    font-size: 1.4em;
+  }
+  .project__status {
+    font-size: 0.75em;
+    padding: 0.1em 0.6em;
+    border-radius: 999px;
+    color: var(--accent-dark);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  .project p {
+    margin: 0.5rem 0;
+  }
+  .project__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.75em;
+    color: rgb(var(--gray));
+  }
+  .project__stack li {
+    padding: 0.05em 0.55em;
+    border: 1px solid rgb(var(--gray-light));
+    border-radius: 6px;
+  }
+  .project__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9em;
+  }
+</style>
