@@ -6,7 +6,6 @@ import { landscapes } from "@/utils/landscapes";
 import { isPublished } from "@/utils/posts";
 import SiteLayout from '@/components/layout/SiteLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { SUBSTACK_URL } from '../../consts';
 
 const title = "Blog";
 const description = "Andrew's blog";
@@ -17,9 +16,6 @@ const posts = (await getCollection('blog', isPublished)).sort(
 ---
 <SiteLayout title={title} description={description}>
 	<section>
-		<p class="subscribe">
-			I also write on <a href={SUBSTACK_URL} target="_blank" rel="noreferrer">Substack</a>. Subscribe there to get new posts by email.
-		</p>
 		<ul>
 			{posts.map((post) => {
 				let hero = pickLandscape(landscapes, post.id);
@@ -42,11 +38,6 @@ const posts = (await getCollection('blog', isPublished)).sort(
 </SiteLayout>
 
 <style>
-	.subscribe {
-		margin: 0 0 2rem;
-		text-align: center;
-		color: rgb(var(--gray));
-	}
 	.title {
 		margin: 0;
 		color: rgb(var(--black));
@@ -95,7 +86,7 @@ const posts = (await getCollection('blog', isPublished)).sort(
 	}
 	ul li a:hover h4,
 	ul li a:hover .date {
-		color: rgb(var(--accent));
+		color: var(--accent);
 	}
 	ul a:hover img {
 		box-shadow: var(--box-shadow);

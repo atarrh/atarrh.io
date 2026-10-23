@@ -21,10 +21,11 @@ const { title, description, portraitImage, portraitAlt = "" } = Astro.props;
       <figure class="about__photo">
         <Image
           src={portraitImage}
-          alt={portraitAlt ?? "Portrait"}
-          widths={[180, 240, 320, 360, 720]}
+          alt={portraitAlt || "Portrait of Andrew Tarrh"}
+          widths={[360, 540, 720, 1084]}
           sizes="(min-width: 600px) 360px, 80vw"
-          loading="lazy"
+          quality={90}
+          loading="eager"
         />
       </figure>
     )}
