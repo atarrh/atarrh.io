@@ -1,0 +1,4 @@
+# WebFinger: tells Tailscale that logins for @atarrh.io go to my own login server (https://id.atarrh.io).
+/.well-known/webfinger
+  Content-Type: application/jrd+json
+  Access-Control-Allow-Origin: *
